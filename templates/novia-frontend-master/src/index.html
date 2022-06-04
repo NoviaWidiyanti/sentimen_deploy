@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Build Query</title>
+    <link rel="icon" href="{{url_for('static', filename='favicon.png') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header">
+                <div class="brand">
+                    <h2>Build Query</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section id="search">
+        <div class="container">
+            <div class="search-group">
+                <form action="/" method="post">
+                    <div class="">
+                        <div class="search-bar">
+                            <h2>Search for</h2>
+                            <label for="search">Enter one or more keywords</label><br><br>
+                            <div class="search-input">
+                                <span><i class="icon-search"></i></span>
+                                <input class="input-search" type="text" name="search" placeholder="Ex. machine learning">
+                                <button class="btn-reset btn-hide" href="#" type="reset" value="Reset" title="Reset"><i class="icon-reset"></i></button>
+                            </div>
+                            <p>Advanced Search</p>
+                        </div>
+                        <div class="dropdown-filter">
+                            <div class="select">
+                                <select name="anywhere">
+                                    <option value="anywhare">Anywhere</option>
+                                    <option value="anywhare1">Anywhere1</option>
+                                    <option value="anywhare2">Anywhere2</option>
+                                </select>
+                            </div>
+                            <div class="select">
+                                <select name="sentiment">
+                                    <option value="any-sentiment">Any Sentiment</option>
+                                    <option value="any-sentiment1">Any Sentiment1</option>
+                                    <option value="any-sentiment2">Any Sentiment2</option>
+                                </select>
+                            </div>
+                            <div class="select">
+                                <select name="sort">
+                                    <option value="most-positive">The Most Positive</option>
+                                    <option value="very-positive">Very Positive</option>
+                                    <option value="positive">Very Positive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="range-slider-group">
+                            <p>Time window</p>
+                            <div class="range-slider">
+                                <input class="range-slider__range" type="range" value="8" min="0" max="99" step="1">  <span class="range-slider__value">8</span> days ago
+                            </div>
+                        </div>
+                        <button class="btn btn-primary align-center">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-group">
+                Copyright &copy; 2019 Novia Widiyanti. All rights reserved
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/main.js?v=2"></script>
+</body>
+</html>

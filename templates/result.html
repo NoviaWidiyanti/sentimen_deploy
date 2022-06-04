@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Build Query - Result</title>
+    <link rel="icon" href="{{url_for('static', filename='favicon.png') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header">
+                <div class="brand">
+                    <h2>News Sentiment</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="button-menu">
+        <div class="container">
+            <div class="container-flex justify-between align-center">
+                <div class="button-group">
+                    <ul>
+                        <li class="active">
+                            <a href="{{ url_for('show_result') }}"><button class="btn-result">Result</button></a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('show_insight') }}"><button class="btn-insight">Insight</button></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="sort-by-button"> -->
+                    <!-- <div class="dropdown"> -->
+                        <!-- <div class="dropdown-toggle"> -->
+                            <!-- <i class="icon-sort"></i> -->
+                        <!-- </div> -->
+                        <!-- <ul class="dropdown-list"> -->
+                            <!-- <li><a href="#">Accending</a></li> -->
+                            <!-- <li><a href="#">Decending</a></li> -->
+                        <!-- </ul> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section id="keyword">
+        <div class="container">
+            <div>
+                <h3>Hasil pencarian untuk kata kunci {{ value }} :</h3>
+            </div>
+        </div>
+    </section>
+    
+    <section id="result">
+        {% for y in berita.itertuples(index = False) %}
+        <div class="container">
+            <div class="result-group">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ y.urlToImage }}">
+                    </div>
+                    <div class="card-body">
+                        <h2>{{ y.title }}</h2>
+                        <small class="time">
+                            <i class="icon-calendar"></i> {{ y.publishedAt }}
+                        </small>
+                        <p class="description"> {{ y.description }}</p>
+                        <div class="card-footer">
+                            <div>
+                                <!-- <p><i class="icon-summary"></i> Summary</p> -->
+                            </div>
+                            <div>
+                                <!-- <p>Sentiment</p> -->
+                            </div>
+                            <div>
+                               <!-- <p><i class="icon-smile"></i>{{ y.hasil_sentimen }}</p> -->
+
+                            {% if y.hasil_sentimen == 'Positif' %}
+                                <p style="background-color: #4bc1c0"><i class="icon-smile"></i>{{
+                                y.hasil_sentimen }} {{ ('%f' % y.probability).rstrip('0').rstrip('.') }} %</p>
+                            {% elif y.hasil_sentimen == 'Negatif' %}
+                                <p style="background-color: #ff6283"><i class="icon-sad"></i>{{ 
+                                y.hasil_sentimen }} {{ ('%f' % y.probability).rstrip('0').rstrip('.') }} %</p>
+                            {% elif y.hasil_sentimen == 'Netral'%}
+                                <p style="background-color: #ffe199"><i class="icon-netral"></i>{{ 
+                                y.hasil_sentimen }} {{ ('%f' % y.probability).rstrip('0').rstrip('.') }} %</p>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-group">
+                Copyright &copy; 2019 Novia Widiyanti. All rights reserved
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
